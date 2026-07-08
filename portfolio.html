@@ -1,0 +1,818 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Naidelyn Reales — Content Creator & Video Editor</title>
+<meta name="description" content="Portfolio of Naidelyn Reales — social media content creator, video editor, and photographer based in Barranquilla, Colombia.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,500&family=Montserrat:wght@300;400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+
+  /* ============================================
+     DESIGN TOKENS
+     ============================================ */
+  :root{
+    --ink:        #14181A;   /* main background — screening-room black */
+    --surface:    #1D2325;   /* panels / cards */
+    --surface-2:  #262D2F;   /* raised elements */
+    --paper:      #F3EEE3;   /* warm off-white, "film paper" */
+    --paper-dim:  #C9C4B8;   /* secondary text on dark */
+    --gold:       #C9A96E;   /* her established brand gold (Grupo Roma) */
+    --gold-dim:   #8f7a4e;
+    --coral:      #E8604C;   /* carnaval-energy accent, used sparingly */
+    --line:       rgba(243,238,227,0.14);
+
+    --display: 'Playfair Display', serif;
+    --body:    'Montserrat', sans-serif;
+    --mono:    'Space Mono', monospace;
+  }
+
+  *{ box-sizing:border-box; margin:0; padding:0; }
+  html{ scroll-behavior:smooth; }
+  body{
+    background:var(--ink);
+    color:var(--paper);
+    font-family:var(--body);
+    -webkit-font-smoothing:antialiased;
+    overflow-x:hidden;
+  }
+  img{ max-width:100%; display:block; }
+  a{ color:inherit; text-decoration:none; }
+  ul{ list-style:none; }
+  section{ position:relative; }
+
+  @media (prefers-reduced-motion: reduce){
+    *{ animation-duration:0.01ms !important; animation-iteration-count:1 !important; transition-duration:0.01ms !important; scroll-behavior:auto !important; }
+  }
+
+  .wrap{
+    max-width:1180px;
+    margin:0 auto;
+    padding:0 32px;
+  }
+  @media (max-width:640px){ .wrap{ padding:0 20px; } }
+
+  .eyebrow{
+    font-family:var(--mono);
+    font-size:12px;
+    letter-spacing:0.14em;
+    text-transform:uppercase;
+    color:var(--gold);
+  }
+
+  /* ============================================
+     SPROCKET DIVIDER — signature recurring device
+     evokes a film negative / camera frame counter,
+     ties video + photography identity together
+     ============================================ */
+  .sprocket{
+    display:flex;
+    align-items:center;
+    gap:6px;
+    padding:14px 0;
+    overflow:hidden;
+    border-top:1px solid var(--line);
+    border-bottom:1px solid var(--line);
+    background:
+      repeating-linear-gradient(90deg,
+        transparent 0, transparent 34px,
+        var(--surface-2) 34px, var(--surface-2) 46px);
+  }
+  .sprocket span{
+    flex:0 0 auto;
+    width:9px; height:9px;
+    border-radius:2px;
+    background:var(--ink);
+    margin:0 12.5px;
+  }
+
+  /* ============================================
+     NAV
+     ============================================ */
+  header{
+    position:sticky; top:0; z-index:50;
+    background:rgba(20,24,26,0.86);
+    backdrop-filter:blur(10px);
+    border-bottom:1px solid var(--line);
+  }
+  nav{
+    display:flex; align-items:center; justify-content:space-between;
+    padding:20px 0;
+  }
+  .logo{
+    font-family:var(--display);
+    font-size:20px;
+    font-weight:700;
+    letter-spacing:0.01em;
+  }
+  .logo span{ color:var(--gold); }
+  .nav-links{ display:flex; gap:36px; }
+  .nav-links a{
+    font-size:13px;
+    letter-spacing:0.06em;
+    text-transform:uppercase;
+    color:var(--paper-dim);
+    transition:color .2s ease;
+  }
+  .nav-links a:hover{ color:var(--gold); }
+  .nav-cta{
+    font-family:var(--mono);
+    font-size:12px;
+    padding:9px 18px;
+    border:1px solid var(--gold-dim);
+    border-radius:2px;
+    color:var(--gold);
+    transition:background .2s ease, color .2s ease;
+  }
+  .nav-cta:hover{ background:var(--gold); color:var(--ink); }
+  .nav-toggle{ display:none; background:none; border:0; color:var(--paper); font-size:22px; cursor:pointer; }
+
+  @media (max-width:800px){
+    .nav-links{ display:none; }
+    .nav-toggle{ display:block; }
+  }
+
+  /* ============================================
+     HERO
+     ============================================ */
+  .hero{
+    padding:120px 0 70px;
+    display:grid;
+    grid-template-columns:1.4fr 1fr;
+    gap:60px;
+    align-items:end;
+  }
+  .hero h1{
+    font-family:var(--display);
+    font-weight:600;
+    font-size:clamp(46px, 7vw, 92px);
+    line-height:0.98;
+    letter-spacing:-0.01em;
+  }
+  .hero h1 em{
+    font-style:italic;
+    color:var(--gold);
+    font-weight:500;
+  }
+  .hero .role{
+    font-size:18px;
+    color:var(--paper-dim);
+    max-width:440px;
+    margin-top:22px;
+    line-height:1.6;
+  }
+  .hero-cta-row{
+    display:flex; gap:16px; margin-top:36px; flex-wrap:wrap;
+  }
+  .btn{
+    font-family:var(--mono);
+    font-size:13px;
+    padding:14px 26px;
+    border-radius:2px;
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+    transition:transform .2s ease, background .2s ease, color .2s ease;
+  }
+  .btn-solid{ background:var(--gold); color:var(--ink); }
+  .btn-solid:hover{ transform:translateY(-2px); }
+  .btn-ghost{ border:1px solid var(--line); color:var(--paper); }
+  .btn-ghost:hover{ border-color:var(--gold); color:var(--gold); }
+
+  .hero-side{
+    font-family:var(--mono);
+    font-size:13px;
+    color:var(--paper-dim);
+    border-left:1px solid var(--line);
+    padding-left:24px;
+    line-height:1.9;
+  }
+  .hero-side b{ color:var(--paper); font-weight:400; }
+  @media (max-width:800px){
+    .hero{ grid-template-columns:1fr; gap:32px; padding-top:56px; }
+    .hero-side{ border-left:none; border-top:1px solid var(--line); padding-left:0; padding-top:20px; }
+  }
+
+  /* marquee ticker of tools/skills — reads like a scrubbing timeline */
+  .ticker-wrap{
+    overflow:hidden;
+    border-top:1px solid var(--line);
+    border-bottom:1px solid var(--line);
+    background:var(--surface);
+  }
+  .ticker{
+    display:flex;
+    width:max-content;
+    animation:scroll-left 32s linear infinite;
+  }
+  .ticker span{
+    font-family:var(--mono);
+    font-size:13px;
+    letter-spacing:0.05em;
+    text-transform:uppercase;
+    padding:16px 28px;
+    white-space:nowrap;
+    color:var(--paper-dim);
+    border-right:1px solid var(--line);
+  }
+  .ticker span b{ color:var(--gold); font-weight:400; }
+  @keyframes scroll-left{
+    from{ transform:translateX(0); }
+    to{ transform:translateX(-50%); }
+  }
+
+  /* ============================================
+     SECTION HEADS
+     ============================================ */
+  .section{ padding:96px 0; }
+  .section-head{
+    display:flex; justify-content:space-between; align-items:flex-end;
+    margin-bottom:52px; gap:24px; flex-wrap:wrap;
+  }
+  .section-head h2{
+    font-family:var(--display);
+    font-size:clamp(32px, 4vw, 48px);
+    font-weight:600;
+    margin-top:8px;
+  }
+  .section-note{
+    max-width:320px;
+    font-size:14px;
+    color:var(--paper-dim);
+    line-height:1.6;
+    text-align:right;
+  }
+  @media (max-width:700px){ .section-note{ text-align:left; } }
+
+  /* ============================================
+     SERVICES
+     ============================================ */
+  .services{
+    display:grid;
+    grid-template-columns:repeat(4, 1fr);
+    gap:1px;
+    background:var(--line);
+    border:1px solid var(--line);
+  }
+  .service{
+    background:var(--ink);
+    padding:36px 26px;
+    transition:background .25s ease;
+  }
+  .service:hover{ background:var(--surface); }
+  .service .num{
+    font-family:var(--mono);
+    font-size:12px;
+    color:var(--gold);
+  }
+  .service h3{
+    font-family:var(--display);
+    font-size:21px;
+    font-weight:600;
+    margin:16px 0 10px;
+  }
+  .service p{
+    font-size:13.5px;
+    color:var(--paper-dim);
+    line-height:1.65;
+  }
+  @media (max-width:900px){ .services{ grid-template-columns:repeat(2, 1fr); } }
+  @media (max-width:520px){ .services{ grid-template-columns:1fr; } }
+
+  /* ============================================
+     WORK — contact-sheet gallery
+     ============================================ */
+  .tabs{
+    display:flex; gap:8px; margin-bottom:36px; flex-wrap:wrap;
+  }
+  .tab-btn{
+    font-family:var(--mono);
+    font-size:12.5px;
+    letter-spacing:0.04em;
+    text-transform:uppercase;
+    padding:10px 18px;
+    border:1px solid var(--line);
+    border-radius:2px;
+    color:var(--paper-dim);
+    background:none;
+    cursor:pointer;
+    transition:all .2s ease;
+  }
+  .tab-btn.active, .tab-btn:hover{
+    border-color:var(--gold);
+    color:var(--gold);
+  }
+
+  .sheet{
+    display:none;
+    grid-template-columns:repeat(3, 1fr);
+    gap:2px;
+    background:var(--line);
+    border:1px solid var(--line);
+  }
+  .sheet.active{ display:grid; }
+  @media (max-width:800px){ .sheet{ grid-template-columns:repeat(2, 1fr); } }
+  @media (max-width:480px){ .sheet{ grid-template-columns:1fr; } }
+
+  .frame{
+    position:relative;
+    background:var(--surface);
+    aspect-ratio:4/5;
+    overflow:hidden;
+    display:flex;
+    flex-direction:column;
+    justify-content:flex-end;
+  }
+  .frame .frame-fill{
+    position:absolute; inset:0;
+    background:
+      linear-gradient(160deg, var(--surface-2) 0%, var(--surface) 100%);
+    display:flex; align-items:center; justify-content:center;
+  }
+  .frame .frame-fill svg{ width:38px; height:38px; opacity:0.35; }
+  .frame .frame-tag{
+    position:relative;
+    z-index:2;
+    padding:16px;
+    background:linear-gradient(0deg, rgba(0,0,0,0.72) 10%, transparent 100%);
+  }
+  .frame .frame-index{
+    position:absolute; top:12px; left:14px; z-index:2;
+    font-family:var(--mono); font-size:11px; color:var(--paper-dim);
+  }
+  .frame .frame-title{
+    font-family:var(--display);
+    font-size:16px;
+    font-weight:600;
+    color:var(--paper);
+  }
+  .frame .frame-meta{
+    font-family:var(--mono);
+    font-size:11px;
+    color:var(--gold);
+    margin-top:4px;
+    text-transform:uppercase;
+    letter-spacing:0.04em;
+  }
+  .frame.wide{ aspect-ratio:16/10; }
+
+  /* video-shaped frame gets a play glyph */
+  .frame.video .frame-fill svg{ opacity:0.5; }
+
+  /* ============================================
+     ABOUT
+     ============================================ */
+  .about{
+    display:grid;
+    grid-template-columns:0.8fr 1.2fr;
+    gap:64px;
+    align-items:start;
+  }
+  @media (max-width:800px){ .about{ grid-template-columns:1fr; gap:36px; } }
+
+  .polaroid{
+    background:var(--surface);
+    padding:14px 14px 46px;
+    border:1px solid var(--line);
+    transform:rotate(-2deg);
+  }
+  .polaroid .frame-fill{
+    aspect-ratio:1/1.1;
+    background:linear-gradient(160deg, var(--surface-2), var(--surface));
+    display:flex; align-items:center; justify-content:center;
+  }
+  .polaroid .frame-fill svg{ width:44px; height:44px; opacity:0.3; }
+  .polaroid figcaption{
+    font-family:var(--mono);
+    font-size:12px;
+    color:var(--paper-dim);
+    margin-top:14px;
+    text-align:center;
+  }
+
+  .about-copy p{
+    font-size:16px;
+    line-height:1.85;
+    color:var(--paper-dim);
+    margin-bottom:20px;
+    max-width:560px;
+  }
+  .about-copy strong{ color:var(--paper); font-weight:600; }
+
+  .meta-grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:28px;
+    margin-top:36px;
+  }
+  .meta-grid h4{
+    font-family:var(--mono);
+    font-size:11px;
+    letter-spacing:0.08em;
+    text-transform:uppercase;
+    color:var(--gold);
+    margin-bottom:10px;
+  }
+  .meta-grid p{ font-size:14px; color:var(--paper-dim); line-height:1.7; }
+
+  /* ============================================
+     CONTACT
+     ============================================ */
+  .contact{
+    padding:100px 0 80px;
+    text-align:center;
+    border-top:1px solid var(--line);
+  }
+  .contact h2{
+    font-family:var(--display);
+    font-size:clamp(34px, 6vw, 64px);
+    font-weight:600;
+    max-width:760px;
+    margin:0 auto 28px;
+    line-height:1.1;
+  }
+  .contact h2 em{ color:var(--gold); font-style:italic; }
+  .contact-links{
+    display:flex; justify-content:center; gap:18px; flex-wrap:wrap; margin-top:34px;
+  }
+
+  footer{
+    padding:28px 0;
+    border-top:1px solid var(--line);
+    display:flex; justify-content:space-between; align-items:center;
+    font-family:var(--mono);
+    font-size:11.5px;
+    color:var(--paper-dim);
+    flex-wrap:wrap;
+    gap:10px;
+  }
+
+  /* scroll reveal */
+  .reveal{ opacity:0; transform:translateY(18px); transition:opacity .6s ease, transform .6s ease; }
+  .reveal.in{ opacity:1; transform:translateY(0); }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap">
+    <nav>
+      <div class="logo">Naidelyn <span>Reales</span></div>
+      <div class="nav-links">
+        <a href="#work">Work</a>
+        <a href="#services">Services</a>
+        <a href="#about">About</a>
+        <a href="#contact">Contact</a>
+      </div>
+      <a href="#contact" class="nav-cta">Let's talk</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+
+  <!-- ============ HERO ============ -->
+  <section class="hero wrap">
+    <div>
+      <p class="eyebrow">Barranquilla, Colombia — Reel 001</p>
+      <h1>Stories that <em>move,</em><br>frames that <em>land.</em></h1>
+      <p class="role">I'm Naidelyn — a bilingual content creator, video editor, and photographer. I turn briefs into reels, static posts, and photo sets that clients actually post.</p>
+      <div class="hero-cta-row">
+        <a href="#work" class="btn btn-solid">View the work →</a>
+        <a href="#contact" class="btn btn-ghost">Start a project</a>
+      </div>
+    </div>
+    <div class="hero-side">
+      <div><b>Based in</b> — Barranquilla, CO</div>
+      <div><b>Language</b> — Spanish (native), English</div>
+      <div><b>Focus</b> — Reels · Photography · Social design</div>
+      <div><b>Available for</b> — Freelance & Upwork projects</div>
+    </div>
+  </section>
+
+  <div class="ticker-wrap">
+    <div class="ticker">
+      <span><b>Premiere Pro</b></span>
+      <span><b>CapCut</b></span>
+      <span><b>Photoshop</b></span>
+      <span><b>Lightroom</b></span>
+      <span><b>Canva</b></span>
+      <span><b>iMovie</b></span>
+      <span><b>InShot</b></span>
+      <span><b>Community Management</b></span>
+      <!-- duplicated for seamless loop -->
+      <span><b>Premiere Pro</b></span>
+      <span><b>CapCut</b></span>
+      <span><b>Photoshop</b></span>
+      <span><b>Lightroom</b></span>
+      <span><b>Canva</b></span>
+      <span><b>iMovie</b></span>
+      <span><b>InShot</b></span>
+      <span><b>Community Management</b></span>
+    </div>
+  </div>
+
+  <div class="sprocket">
+    <span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span>
+    <span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span>
+    <span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span>
+    <span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span>
+  </div>
+
+  <!-- ============ SERVICES ============ -->
+  <section class="section" id="services">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <div>
+          <p class="eyebrow">What I do</p>
+          <h2>Four disciplines,<br>one workflow.</h2>
+        </div>
+        <p class="section-note">From a fixed creative brief to a file ready to post — I handle editing, design, and shooting under one roof.</p>
+      </div>
+
+      <div class="services reveal">
+        <div class="service">
+          <p class="num">01</p>
+          <h3>Video Editing</h3>
+          <p>Reels and short-form video in Premiere Pro & CapCut — color grading, Beat Sync, keyframe zoom, and export settings built for each platform.</p>
+        </div>
+        <div class="service">
+          <p class="num">02</p>
+          <h3>Photo Editing</h3>
+          <p>Retouching and color work in Photoshop & Lightroom, plus branded static posts and layouts designed in Canva.</p>
+        </div>
+        <div class="service">
+          <p class="num">03</p>
+          <h3>Photography</h3>
+          <p>Portrait, event, and family sessions shot on a Canon EOS Rebel T6 — from planning the mood board to the final gallery.</p>
+        </div>
+        <div class="service">
+          <p class="num">04</p>
+          <h3>Community Management</h3>
+          <p>Content calendars, platform strategy, and day-to-day audience engagement for social accounts.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="sprocket">
+    <span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span>
+    <span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span>
+    <span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span>
+    <span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span>
+  </div>
+
+  <!-- ============ WORK — contact sheet ============ -->
+  <section class="section" id="work">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <div>
+          <p class="eyebrow">Selected work</p>
+          <h2>Contact sheet.</h2>
+        </div>
+        <p class="section-note">Every frame below is a placeholder — swap it for a real thumbnail, photo, or video still. See the note at the bottom of the page for how.</p>
+      </div>
+
+      <div class="tabs reveal">
+        <button class="tab-btn active" data-tab="reels">Reels & Video</button>
+        <button class="tab-btn" data-tab="static">Static & Design</button>
+        <button class="tab-btn" data-tab="photo">Photography</button>
+      </div>
+
+      <!-- REELS -->
+      <div class="sheet active reveal" id="reels">
+        <div class="frame video">
+          <div class="frame-fill">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><polygon points="6 3 20 12 6 21 6 3" fill="currentColor" stroke="none"/></svg>
+          </div>
+          <p class="frame-index">CR — 01</p>
+          <div class="frame-tag">
+            <p class="frame-title">Grupo Roma — Reel 1</p>
+            <p class="frame-meta">Beat Sync · Color grade</p>
+          </div>
+        </div>
+        <div class="frame video">
+          <div class="frame-fill">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><polygon points="6 3 20 12 6 21 6 3" fill="currentColor" stroke="none"/></svg>
+          </div>
+          <p class="frame-index">CR — 02</p>
+          <div class="frame-tag">
+            <p class="frame-title">Grupo Roma — Reel 2</p>
+            <p class="frame-meta">Keyframe zoom</p>
+          </div>
+        </div>
+        <div class="frame video">
+          <div class="frame-fill">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><polygon points="6 3 20 12 6 21 6 3" fill="currentColor" stroke="none"/></svg>
+          </div>
+          <p class="frame-index">CR — 03</p>
+          <div class="frame-tag">
+            <p class="frame-title">Grupo Roma — Reel 3</p>
+            <p class="frame-meta">Typography · Playfair + Montserrat</p>
+          </div>
+        </div>
+        <div class="frame video">
+          <div class="frame-fill">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><polygon points="6 3 20 12 6 21 6 3" fill="currentColor" stroke="none"/></svg>
+          </div>
+          <p class="frame-index">— 00</p>
+          <div class="frame-tag">
+            <p class="frame-title">Add your next reel</p>
+            <p class="frame-meta">Open slot</p>
+          </div>
+        </div>
+        <div class="frame video">
+          <div class="frame-fill">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><polygon points="6 3 20 12 6 21 6 3" fill="currentColor" stroke="none"/></svg>
+          </div>
+          <p class="frame-index">— 00</p>
+          <div class="frame-tag">
+            <p class="frame-title">Add your next reel</p>
+            <p class="frame-meta">Open slot</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- STATIC -->
+      <div class="sheet" id="static">
+        <div class="frame">
+          <div class="frame-fill">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="1"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg>
+          </div>
+          <p class="frame-index">CR — S1</p>
+          <div class="frame-tag">
+            <p class="frame-title">Grupo Roma — Static post 1</p>
+            <p class="frame-meta">Gold & white palette</p>
+          </div>
+        </div>
+        <div class="frame">
+          <div class="frame-fill">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="1"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg>
+          </div>
+          <p class="frame-index">CR — S2</p>
+          <div class="frame-tag">
+            <p class="frame-title">Grupo Roma — Static post 2</p>
+            <p class="frame-meta">Safe-zone layout, paid media</p>
+          </div>
+        </div>
+        <div class="frame">
+          <div class="frame-fill">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="1"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg>
+          </div>
+          <p class="frame-index">— 00</p>
+          <div class="frame-tag">
+            <p class="frame-title">Add a design sample</p>
+            <p class="frame-meta">Open slot</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- PHOTO -->
+      <div class="sheet" id="photo">
+        <div class="frame">
+          <div class="frame-fill">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 7h3l2-3h8l2 3h3v13H3z"/><circle cx="12" cy="13" r="4"/></svg>
+          </div>
+          <p class="frame-index">FAM — 01</p>
+          <div class="frame-tag">
+            <p class="frame-title">Family session</p>
+            <p class="frame-meta">15–20 people · Mood board</p>
+          </div>
+        </div>
+        <div class="frame">
+          <div class="frame-fill">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 7h3l2-3h8l2 3h3v13H3z"/><circle cx="12" cy="13" r="4"/></svg>
+          </div>
+          <p class="frame-index">FAM — 02</p>
+          <div class="frame-tag">
+            <p class="frame-title">Family session — detail</p>
+            <p class="frame-meta">Natural light · Terrace</p>
+          </div>
+        </div>
+        <div class="frame">
+          <div class="frame-fill">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 7h3l2-3h8l2 3h3v13H3z"/><circle cx="12" cy="13" r="4"/></svg>
+          </div>
+          <p class="frame-index">— 00</p>
+          <div class="frame-tag">
+            <p class="frame-title">Add a photo set</p>
+            <p class="frame-meta">Open slot</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="sprocket">
+    <span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span>
+    <span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span>
+    <span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span>
+    <span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span>
+  </div>
+
+  <!-- ============ ABOUT ============ -->
+  <section class="section" id="about">
+    <div class="wrap about">
+      <figure class="polaroid reveal">
+        <div class="frame-fill">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4 3.6-7 8-7s8 3 8 7"/></svg>
+        </div>
+        <figcaption>Add a portrait here</figcaption>
+      </figure>
+
+      <div class="about-copy reveal">
+        <p class="eyebrow">About</p>
+        <h2 style="font-family:var(--display); font-size:clamp(28px,4vw,42px); font-weight:600; margin:12px 0 26px;">Barranquilla-based, brief-to-delivery.</h2>
+        <p>I'm a <strong>freelance content creator</strong> working across video editing, photo editing, design, and photography. I started out managing my university's YouTube channel, and since then I've worked with a live music group, a personal finance app, and families looking for portrait sessions — each with its own brief, tone, and audience.</p>
+        <p>I'm <strong>bilingual</strong> in Spanish and English, which means I can take a brief, ask the right questions, and deliver in whichever language a client needs — including proposals and revisions.</p>
+        <div class="meta-grid">
+          <div>
+            <h4>Tools</h4>
+            <p>Premiere Pro, CapCut, iMovie, InShot, Photoshop, Lightroom, Canva</p>
+          </div>
+          <div>
+            <h4>Equipment</h4>
+            <p>Canon EOS Rebel T6, tripod, multiple lenses</p>
+          </div>
+          <div>
+            <h4>Languages</h4>
+            <p>Spanish — native<br>English — professional working proficiency</p>
+          </div>
+          <div>
+            <h4>Available for</h4>
+            <p>Reel editing, static post design, community management, photography</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ CONTACT ============ -->
+  <section class="contact" id="contact">
+    <div class="wrap">
+      <p class="eyebrow reveal">Get in touch</p>
+      <h2 class="reveal">Have a brief? <em>Let's make it move.</em></h2>
+      <div class="contact-links reveal">
+        <a href="mailto:tu-email@ejemplo.com" class="btn btn-solid">tu-email@ejemplo.com</a>
+        <a href="#" class="btn btn-ghost">Upwork profile →</a>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="wrap">
+  <span>© 2026 Naidelyn Reales — Barranquilla, Colombia</span>
+  <span>Reel / Frame / Post — one workflow</span>
+</footer>
+
+<script>
+  // Tab switching for the contact-sheet gallery
+  document.querySelectorAll('.tab-btn').forEach(btn=>{
+    btn.addEventListener('click', ()=>{
+      document.querySelectorAll('.tab-btn').forEach(b=>b.classList.remove('active'));
+      document.querySelectorAll('.sheet').forEach(s=>s.classList.remove('active'));
+      btn.classList.add('active');
+      document.getElementById(btn.dataset.tab).classList.add('active');
+    });
+  });
+
+  // Scroll reveal
+  const io = new IntersectionObserver((entries)=>{
+    entries.forEach(e=>{ if(e.isIntersecting) e.target.classList.add('in'); });
+  }, { threshold:0.12 });
+  document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+</script>
+
+<!--
+  ============================================================
+  HOW TO ADD YOUR OWN PHOTOS AND VIDEOS
+  ============================================================
+  Every placeholder in the gallery is a <div class="frame">.
+  Inside each one there's a <div class="frame-fill"> — that's
+  the part to replace.
+
+  FOR A PHOTO:
+  Replace this:
+    <div class="frame-fill"><svg>...</svg></div>
+  With this:
+    <div class="frame-fill" style="background-image:url('images/your-photo.jpg'); background-size:cover; background-position:center;"></div>
+
+  FOR A VIDEO CLIP (short mp4, muted, auto-loop):
+    <video class="frame-fill" style="object-fit:cover; width:100%; height:100%;" autoplay muted loop playsinline>
+      <source src="videos/your-reel.mp4" type="video/mp4">
+    </video>
+
+  FOR YOUR PORTRAIT (About section):
+  Find <figure class="polaroid"> and do the same swap on its
+  .frame-fill div.
+
+  Keep images in an /images folder and videos in a /videos
+  folder next to this index.html file, then update the paths
+  above to match your filenames.
+  ============================================================
+-->
+
+</body>
+</html>
